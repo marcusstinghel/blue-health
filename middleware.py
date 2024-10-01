@@ -13,20 +13,24 @@ def login():
 
 def approval_compliance_to_approval_accountability(card_request):
     login()
-    card = Card(id=card_request.id)
+    card = Card.get(card_request.id)
     for contact in card.contacts:
         if contact.email == 'felipe.cabral@bluehealthcorporate.com':
             card.pipeline_stage_id = 15766  # Approval - Accountability (VD)
             response = card.update()
             return response
+        else:
+            return {'fail': 'Contact not exist'}
 
 
 def approval_accountability_to_approval_financial(card_request):
     login()
-    card = Card(id=card_request.id)
+    card = Card.get(card_request.id)
     if isinstance(card.contacts, Iterable):
         for contact in card.contacts:
             if contact.email == 'vinicius.dezotti@bluehealthcorporate.com':
                 card.pipeline_stage_id = 15767  # Approval - Financial (GV)
                 response = card.update()
                 return response
+            else:
+                return {'fail': 'Contact not exist'}
