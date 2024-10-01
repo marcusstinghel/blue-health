@@ -8,6 +8,7 @@ def login():
     wepipe_domain = os.getenv("WEPIPE_DOMAIN")
     wepipe_email = os.getenv("WEPIPE_EMAIL")
     wepipe_password = os.getenv("WEPIPE_PASSWORD")
+    print(wepipe_domain)
     auth.login(wepipe_domain, wepipe_email, wepipe_password)
 
 
