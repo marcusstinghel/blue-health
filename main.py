@@ -6,6 +6,7 @@ process = APIRouter(prefix="/process", tags=["process"])
 
 @process.post("/purchasing/approval_compliance_to_approval_accountability")
 async def approval_compliance_to_approval_accountability(request):
+    print(request)
     try:
         middleware.approval_compliance_to_approval_accountability(request=request)
         return {"Success": "True"}
