@@ -8,18 +8,13 @@ def login():
     wepipe_domain = os.getenv("WEPIPE_DOMAIN")
     wepipe_email = os.getenv("WEPIPE_EMAIL")
     wepipe_password = os.getenv("WEPIPE_PASSWORD")
-    print(wepipe_domain)
     auth.login(wepipe_domain, wepipe_email, wepipe_password)
+    return wepipe_password
 
 
 def approval_compliance_to_approval_accountability(card: Card):
-    login()
-    if isinstance(card.contacts, Iterable):
-        for contact in card.contacts:
-            if contact.email == 'felipe.cabral@bluehealthcorporate.com':
-                card.pipeline_stage_id = 15766  # Approval - Accountability (VD)
-                card.update()
-                break
+    auth = login()
+    return auth
 
 
 def approval_accountability_to_approval_financial(card: Card):
