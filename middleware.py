@@ -11,8 +11,9 @@ def login():
     auth.login(wepipe_domain, wepipe_email, wepipe_password)
 
 
-def approval_compliance_to_approval_accountability(card: Card):
+def approval_compliance_to_approval_accountability(card_request):
     login()
+    card = Card(id=card_request.id)
     if isinstance(card.contacts, Iterable):
         for contact in card.contacts:
             if contact.email == 'felipe.cabral@bluehealthcorporate.com':
@@ -21,8 +22,9 @@ def approval_compliance_to_approval_accountability(card: Card):
                 break
 
 
-def approval_accountability_to_approval_financial(card: Card):
+def approval_accountability_to_approval_financial(card_request):
     login()
+    card = Card(id=card_request.id)
     if isinstance(card.contacts, Iterable):
         for contact in card.contacts:
             if contact.email == 'vinicius.dezotti@bluehealthcorporate.com':
