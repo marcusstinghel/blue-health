@@ -1,4 +1,5 @@
 import os
+from collections.abc import Iterable
 
 from wepipe_python_sdk import Card, auth
 
@@ -12,19 +13,21 @@ def login():
 
 def approval_compliance_to_approval_accountability(request):
     login()
-    card = Card(request=request)
-    for contact in card.contacts:
-        if contact.email == 'felipe.cabral@bluehealthcorporate.com':
-            card.pipeline_stage_id = 15766  # Approval - Accountability (VD)
-            card.update()
-            break
+    card = Card.get(id=request.id)
+    if isinstance(card.contacts, Iterable):
+        for contact in card.contacts:
+            if contact.email == 'felipe.cabral@bluehealthcorporate.com':
+                card.pipeline_stage_id = 15766  # Approval - Accountability (VD)
+                card.update()
+                break
 
 
 def approval_accountability_to_approval_financial(request):
     login()
-    card = Card(request=request)
-    for contact in card.contacts:
-        if contact.email == 'vinicius.dezotti@bluehealthcorporate.com':
-            card.pipeline_stage_id = 15767  # Approval - Financial (GV)
-            card.update()
-            break
+    card = Card.get(id=request.id)
+    if isinstance(card.contacts, Iterable):
+        for contact in card.contacts:
+            if contact.email == 'vinicius.dezotti@bluehealthcorporate.com':
+                card.pipeline_stage_id = 15767  # Approval - Financial (GV)
+                card.update()
+                break
