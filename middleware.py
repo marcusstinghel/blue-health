@@ -18,8 +18,8 @@ def approval_compliance_to_approval_accountability(card_request):
         for contact in card.contacts:
             if contact.email == 'felipe.cabral@bluehealthcorporate.com':
                 card.pipeline_stage_id = 15766  # Approval - Accountability (VD)
-                card.update()
-                break
+                response = card.update()
+                return response
 
 
 def approval_accountability_to_approval_financial(card_request):
@@ -29,5 +29,5 @@ def approval_accountability_to_approval_financial(card_request):
         for contact in card.contacts:
             if contact.email == 'vinicius.dezotti@bluehealthcorporate.com':
                 card.pipeline_stage_id = 15767  # Approval - Financial (GV)
-                card.update()
-                break
+                response = card.update()
+                return response
